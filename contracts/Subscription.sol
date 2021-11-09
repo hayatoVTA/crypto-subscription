@@ -125,7 +125,7 @@ contract SubscriptionContract is Ownable, ReentrancyGuard {
         Plans storage plan = plans[subscriptionId];
 
         // Statusがactiveの時にだけ実行
-        require(subscription.status == STATUS_ACTIVE, "status is active");
+        require(subscription.status == STATUS_ACTIVE, "status is not active");
 
         require(subscription.subscriber != address(0), "does not exist");
 
@@ -157,7 +157,6 @@ contract SubscriptionContract is Ownable, ReentrancyGuard {
         // idに紐づくsubscriptionを削除
         delete subscriptions[msg.sender][subscriptionId];
     }
-    
 
     // Self Destruct
     function sendAllMoney(address payable dest_addr) public onlyOwner {
